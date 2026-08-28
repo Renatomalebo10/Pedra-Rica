@@ -53,10 +53,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('seasons', SeasonController::class);
         Route::resource('competitions', CompetitionController::class);
         Route::resource('trophies', TrophyController::class);
-        Route::resource('gallery', GalleryController::class);
-        Route::resource('gallery-categories', GalleryCategoryController::class);
-        Route::resource('news', NewsController::class);
-        Route::resource('history-events', HistoryEventController::class);
+        Route::resource('gallery', GalleryController::class)->parameters(['gallery' => 'image']);
+        Route::resource('gallery-categories', GalleryCategoryController::class)->parameters(['gallery-categories' => 'category']);
+        Route::resource('news', NewsController::class)->parameters(['news' => 'article']);
+        Route::resource('history-events', HistoryEventController::class)->parameters(['history-events' => 'event']);
         Route::resource('social-links', SocialLinkController::class);
         Route::get('settings', [SettingController::class, 'index'])->name('settings');
         Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
