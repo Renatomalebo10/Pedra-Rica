@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Player;
-use App\Models\Season;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -37,9 +36,7 @@ class PlayerController extends Controller
 
     public function create()
     {
-        $seasons = Season::orderByDesc('is_current')->orderByDesc('name')->get();
-
-        return view('admin.players.form', compact('seasons'));
+        return view('admin.players.form');
     }
 
     public function store(Request $request)
@@ -50,7 +47,6 @@ class PlayerController extends Controller
             'number' => ['nullable', 'integer', 'min:0', 'max:99'],
             'position' => ['nullable', 'string', 'max:255'],
             'biography' => ['nullable', 'string'],
-            'season_id' => ['nullable', 'exists:seasons,id'],
             'is_active' => ['boolean'],
             'goals' => ['nullable', 'integer', 'min:0'],
             'assists' => ['nullable', 'integer', 'min:0'],
@@ -80,9 +76,7 @@ class PlayerController extends Controller
 
     public function edit(Player $player)
     {
-        $seasons = Season::orderByDesc('is_current')->orderByDesc('name')->get();
-
-        return view('admin.players.form', compact('player', 'seasons'));
+        return view('admin.players.form', compact('player'));
     }
 
     public function update(Request $request, Player $player)
@@ -93,7 +87,6 @@ class PlayerController extends Controller
             'number' => ['nullable', 'integer', 'min:0', 'max:99'],
             'position' => ['nullable', 'string', 'max:255'],
             'biography' => ['nullable', 'string'],
-            'season_id' => ['nullable', 'exists:seasons,id'],
             'is_active' => ['boolean'],
             'goals' => ['nullable', 'integer', 'min:0'],
             'assists' => ['nullable', 'integer', 'min:0'],

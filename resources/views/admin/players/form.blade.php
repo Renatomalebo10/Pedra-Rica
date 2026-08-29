@@ -76,29 +76,11 @@
                         class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm
                                focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
                     <option value="">Selecionar posição</option>
-                    @foreach(['Guarda-Redes', 'Defesa', 'Médio', 'Avançado', 'Extremo'] as $pos)
+                    @foreach(['Guarda-Redes', 'Fixo', 'Ala', 'Pivô'] as $pos)
                         <option value="{{ $pos }}" {{ old('position', $player->position ?? '') === $pos ? 'selected' : '' }}>{{ $pos }}</option>
                     @endforeach
                 </select>
                 @error('position')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Season -->
-            <div>
-                <label for="season_id" class="block text-sm font-medium text-gray-700 mb-1.5">Temporada</label>
-                <select name="season_id" id="season_id"
-                        class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm
-                               focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    <option value="">Selecionar temporada</option>
-                    @foreach($seasons ?? [] as $season)
-                        <option value="{{ $season->id }}" {{ old('season_id', $player->season_id ?? '') == $season->id ? 'selected' : '' }}>
-                            {{ $season->name }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('season_id')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
