@@ -38,17 +38,11 @@
 
             <!-- Competition -->
             <div>
-                <label for="competition_id" class="block text-sm font-medium text-gray-700 mb-1.5">Competição</label>
-                <select name="competition_id" id="competition_id"
-                        class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    <option value="">Selecionar competição</option>
-                    @foreach($competitions ?? [] as $competition)
-                        <option value="{{ $competition->id }}" {{ old('competition_id', $trophy->competition_id ?? '') == $competition->id ? 'selected' : '' }}>
-                            {{ $competition->name }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('competition_id') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                <label for="competition" class="block text-sm font-medium text-gray-700 mb-1.5">Competição</label>
+                <input type="text" name="competition" id="competition" value="{{ old('competition', $trophy->competition ?? '') }}"
+                       placeholder="Ex.: Campeonato Nacional"
+                       class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
+                @error('competition') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <!-- Year -->

@@ -52,7 +52,7 @@
             </div>
             <div>
                 <p class="text-sm font-medium text-gray-700">Competição</p>
-                <p class="text-sm text-gray-900 mt-1">{{ $trophy->competition?->name ?? '—' }}</p>
+                <p class="text-sm text-gray-900 mt-1">{{ $trophy->competition ?: '—' }}</p>
             </div>
             <div>
                 <p class="text-sm font-medium text-gray-700">Temporada</p>

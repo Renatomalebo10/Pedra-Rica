@@ -48,7 +48,7 @@
                                 <span class="text-sm font-medium text-gray-900">{{ $trophy->name }}</span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm text-gray-600">{{ $trophy->competition->name ?? '-' }}</span>
+                                <span class="text-sm text-gray-600">{{ $trophy->competition ?: '-' }}</span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="text-sm text-gray-600">{{ $trophy->year ?? '-' }}</span>
