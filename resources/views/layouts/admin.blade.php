@@ -31,9 +31,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-center h-16 bg-[#162d4a] border-b border-[#2a5080]">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-[#3b82f6] rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">PR</span>
-                    </div>
+                    <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Logotipo Pedra Rica" class="w-8 h-8 rounded-full object-cover ring-2 ring-white/10">
                     <span class="text-white font-bold text-lg">Pedra Rica</span>
                 </a>
             </div>
