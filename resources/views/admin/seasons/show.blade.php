@@ -139,7 +139,7 @@
                         @endif
                         <div>
                             <p class="text-sm font-semibold text-gray-900">{{ $trophy->name }}</p>
-                            <p class="text-xs text-gray-500">{{ $trophy->year }}{{ $trophy->competition ? ' — ' . $trophy->competition->name : '' }}</p>
+                            <p class="text-xs text-gray-500">{{ $trophy->year }}{{ $trophy->competition ? ' — ' . $trophy->competition : '' }}</p>
                         </div>
                     </div>
                 @endforeach
