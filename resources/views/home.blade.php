@@ -21,8 +21,8 @@
                 </div>
 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-                    PEDRA RICA<br>
-                    <span class="text-blue-200">OFICIAL</span>
+                    <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Logotipo Pedra Rica" class="inline-block w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-2xl ring-4 ring-white/20 shadow-xl mb-4">
+                    <span class="block">PEDRA RICA<span class="text-blue-200"> OFICIAL</span></span>
                 </h1>
 
                 <p class="text-lg sm:text-xl text-blue-100/90 mb-10 max-w-xl leading-relaxed">

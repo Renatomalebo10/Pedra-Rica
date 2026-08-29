@@ -33,7 +33,8 @@
 
                 {{-- Logo --}}
                 <a href="{{ route('home') }}" class="flex items-center shrink-0">
-                    <span class="text-xl lg:text-2xl font-extrabold tracking-tight text-[#1e40af]">PEDRA RICA</span>
+                    <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Logotipo Pedra Rica" class="w-9 h-9 lg:w-11 lg:h-11 rounded-full object-cover ring-2 ring-[#1e40af]/20">
+                    <span class="ml-2.5 text-xl lg:text-2xl font-extrabold tracking-tight text-[#1e40af]">PEDRA RICA</span>
                     <span class="ml-1.5 text-[10px] lg:text-xs font-semibold text-[#3b82f6] bg-blue-50 px-1.5 py-0.5 rounded-md uppercase tracking-widest">Oficial</span>
                 </a>
 
@@ -138,9 +139,12 @@
 
                 {{-- Brand --}}
                 <div>
-                    <div class="mb-4">
-                        <span class="text-xl font-extrabold text-white tracking-tight">PEDRA RICA</span>
-                        <span class="ml-1.5 text-[10px] font-semibold text-[#3b82f6] uppercase tracking-widest">Oficial</span>
+                    <div class="flex items-center mb-4">
+                        <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Logotipo Pedra Rica" class="w-10 h-10 rounded-full object-cover ring-2 ring-white/10 mr-2.5">
+                        <div>
+                            <span class="text-xl font-extrabold text-white tracking-tight">PEDRA RICA</span>
+                            <span class="ml-1.5 text-[10px] font-semibold text-[#3b82f6] uppercase tracking-widest">Oficial</span>
+                        </div>
                     </div>
                     <p class="text-sm text-gray-400 leading-relaxed">
                         Um projeto social dedicado à transformação de crianças e adolescentes através do desporto, educação e fé.
