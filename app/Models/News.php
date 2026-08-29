@@ -56,4 +56,9 @@ class News extends Model
     {
         return 'slug';
     }
+
+    public function getImageAttribute(?string $value): ?string
+    {
+        return $value ? "news/{$value}" : null;
+    }
 }

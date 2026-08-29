@@ -24,4 +24,9 @@ class Trophy extends Model
     {
         return $this->belongsTo(Season::class);
     }
+
+    public function getPhotoAttribute(?string $value): ?string
+    {
+        return $value ? "trophies/{$value}" : null;
+    }
 }

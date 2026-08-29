@@ -104,7 +104,7 @@ class PlayerController extends Controller
 
         if ($request->hasFile('photo')) {
             if ($player->photo) {
-                Storage::disk('public')->delete('players/'.$player->photo);
+                Storage::disk('public')->delete($player->photo);
             }
             $validated['photo'] = $this->uploadImage($request->file('photo'), 'players');
         }

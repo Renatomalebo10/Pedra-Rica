@@ -25,4 +25,9 @@ class Coach extends Model
     {
         return $query->where('is_active', true);
     }
+
+    public function getPhotoAttribute(?string $value): ?string
+    {
+        return $value ? "coaches/{$value}" : null;
+    }
 }

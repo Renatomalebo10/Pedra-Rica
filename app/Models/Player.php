@@ -45,6 +45,11 @@ class Player extends Model
         return $this->belongsTo(Season::class);
     }
 
+    public function getPhotoAttribute(?string $value): ?string
+    {
+        return $value ? "players/{$value}" : null;
+    }
+
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true);

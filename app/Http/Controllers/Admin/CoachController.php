@@ -80,7 +80,7 @@ class CoachController extends Controller
 
         if ($request->hasFile('photo')) {
             if ($coach->photo) {
-                Storage::disk('public')->delete('coaches/'.$coach->photo);
+                Storage::disk('public')->delete($coach->photo);
             }
             $validated['photo'] = $this->uploadImage($request->file('photo'), 'coaches');
         }

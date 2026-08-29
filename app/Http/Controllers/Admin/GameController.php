@@ -109,7 +109,7 @@ class GameController extends Controller
 
         if ($request->hasFile('opponent_logo')) {
             if ($game->opponent_logo) {
-                Storage::disk('public')->delete('logos/'.$game->opponent_logo);
+                Storage::disk('public')->delete($game->opponent_logo);
             }
             $validated['opponent_logo'] = $this->uploadImage($request->file('opponent_logo'), 'logos');
         }

@@ -46,4 +46,9 @@ class Game extends Model
     {
         return $this->belongsTo(Season::class);
     }
+
+    public function getOpponentLogoAttribute(?string $value): ?string
+    {
+        return $value ? "logos/{$value}" : null;
+    }
 }

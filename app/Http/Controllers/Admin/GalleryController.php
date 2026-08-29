@@ -82,7 +82,7 @@ class GalleryController extends Controller
 
         if ($request->hasFile('image')) {
             if ($image->image_path) {
-                Storage::disk('public')->delete('gallery/'.$image->image_path);
+                Storage::disk('public')->delete($image->image_path);
             }
             $validated['image_path'] = $this->uploadImage($request->file('image'), 'gallery');
         }

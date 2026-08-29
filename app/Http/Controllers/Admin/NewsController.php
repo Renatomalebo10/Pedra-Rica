@@ -110,7 +110,7 @@ class NewsController extends Controller
 
         if ($request->hasFile('image')) {
             if ($article->image) {
-                Storage::disk('public')->delete('news/'.$article->image);
+                Storage::disk('public')->delete($article->image);
             }
             $validated['image'] = $this->uploadImage($request->file('image'), 'news');
         }

@@ -87,7 +87,7 @@ class TrophyController extends Controller
 
         if ($request->hasFile('photo')) {
             if ($trophy->photo) {
-                Storage::disk('public')->delete('trophies/'.$trophy->photo);
+                Storage::disk('public')->delete($trophy->photo);
             }
             $validated['photo'] = $this->uploadImage($request->file('photo'), 'trophies');
         }

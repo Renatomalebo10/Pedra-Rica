@@ -19,4 +19,9 @@ class Gallery extends Model
     {
         return $this->belongsTo(GalleryCategory::class, 'category_id');
     }
+
+    public function getImagePathAttribute(?string $value): ?string
+    {
+        return $value ? "gallery/{$value}" : null;
+    }
 }
