@@ -22,7 +22,9 @@ class NewsController extends Controller
             });
         }
 
-        if ($request->filled('is_published')) {
+        if ($status = $request->input('status')) {
+            $query->where('is_published', $status === 'published');
+        } elseif ($request->filled('is_published')) {
             $query->where('is_published', $request->boolean('is_published'));
         }
 
@@ -129,17 +131,6 @@ class NewsController extends Controller
 
         return redirect()->route('admin.news.index')
             ->with('success', 'News article deleted successfully.');
-    }
-
-    public function togglePublish(News $article)
-    {
-        $article->update([
-            'is_published' => ! $article->is_published,
-            'published_at' => $article->is_published ? null : now(),
-        ]);
-
-        return redirect()->back()
-            ->with('success', 'Publish status updated.');
     }
 
     private function uploadImage($file, string $directory): string
