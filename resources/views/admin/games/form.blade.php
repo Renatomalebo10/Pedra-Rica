@@ -124,7 +124,7 @@
                 <label for="status" class="block text-sm font-medium text-gray-700 mb-1.5">Estado *</label>
                 <select name="status" id="status" required
                         class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @foreach(['upcoming' => 'Próximo', 'live' => 'Ao vivo', 'finished' => 'Terminado', 'postponed' => 'Adiado', 'cancelled' => 'Cancelado'] as $value => $label)
+                    @foreach(['upcoming' => 'Próximo', 'played' => 'Terminado', 'cancelled' => 'Cancelado'] as $value => $label)
                         <option value="{{ $value }}" {{ old('status', $game->status ?? 'upcoming') === $value ? 'selected' : '' }}>{{ $label }}</option>
                     @endforeach
                 </select>

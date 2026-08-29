@@ -41,8 +41,8 @@
                     <span class="text-4xl font-bold text-gray-900">{{ $game->opponent_score ?? '—' }}</span>
                 </div>
                 @php
-                    $statusLabels = ['upcoming' => 'Próximo', 'live' => 'Ao vivo', 'finished' => 'Terminado', 'postponed' => 'Adiado', 'cancelled' => 'Cancelado'];
-                    $statusColors = ['upcoming' => 'bg-blue-100 text-blue-800', 'live' => 'bg-red-100 text-red-800', 'finished' => 'bg-gray-100 text-gray-800', 'postponed' => 'bg-yellow-100 text-yellow-800', 'cancelled' => 'bg-red-100 text-red-800'];
+                    $statusLabels = ['upcoming' => 'Próximo', 'played' => 'Terminado', 'cancelled' => 'Cancelado'];
+                    $statusColors = ['upcoming' => 'bg-blue-100 text-blue-800', 'played' => 'bg-green-100 text-green-800', 'cancelled' => 'bg-gray-100 text-gray-800'];
                 @endphp
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $statusColors[$game->status] ?? 'bg-gray-100 text-gray-800' }} mt-2">
                     {{ $statusLabels[$game->status] ?? $game->status }}

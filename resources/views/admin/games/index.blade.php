@@ -28,9 +28,7 @@
             <select name="status" class="px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
                 <option value="">Todos os estados</option>
                 <option value="upcoming" {{ request('status') === 'upcoming' ? 'selected' : '' }}>Próximo</option>
-                <option value="live" {{ request('status') === 'live' ? 'selected' : '' }}>Ao vivo</option>
-                <option value="finished" {{ request('status') === 'finished' ? 'selected' : '' }}>Terminado</option>
-                <option value="postponed" {{ request('status') === 'postponed' ? 'selected' : '' }}>Adiado</option>
+                <option value="played" {{ request('status') === 'played' ? 'selected' : '' }}>Terminado</option>
                 <option value="cancelled" {{ request('status') === 'cancelled' ? 'selected' : '' }}>Cancelado</option>
             </select>
             <button type="submit" class="px-4 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors">
@@ -88,16 +86,12 @@
                                 @php
                                     $statusColors = [
                                         'upcoming' => 'bg-blue-100 text-blue-800',
-                                        'live' => 'bg-red-100 text-red-800',
-                                        'finished' => 'bg-green-100 text-green-800',
-                                        'postponed' => 'bg-yellow-100 text-yellow-800',
+                                        'played' => 'bg-green-100 text-green-800',
                                         'cancelled' => 'bg-gray-100 text-gray-800',
                                     ];
                                     $statusLabels = [
                                         'upcoming' => 'Próximo',
-                                        'live' => 'Ao vivo',
-                                        'finished' => 'Terminado',
-                                        'postponed' => 'Adiado',
+                                        'played' => 'Terminado',
                                         'cancelled' => 'Cancelado',
                                     ];
                                 @endphp
