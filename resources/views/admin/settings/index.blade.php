@@ -14,7 +14,6 @@
     <form action="{{ route('admin.settings.update') }}" method="POST"
           class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-6">
         @csrf
-        @method('PUT')
 
         <!-- Club Info -->
         <div>

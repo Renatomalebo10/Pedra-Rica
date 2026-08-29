@@ -10,21 +10,21 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $settings = Setting::orderBy('group')->orderBy('key')->get();
-        $grouped = $settings->groupBy('group');
+        $settings = Setting::pluck('value', 'key')->toArray();
+        $grouped = Setting::orderBy('group')->orderBy('key')->get()->groupBy('group');
 
-        return view('admin.settings.index', compact('grouped'));
+        return view('admin.settings.index', compact('settings', 'grouped'));
     }
 
     public function update(Request $request)
     {
-        $data = $request->input('settings', []);
-
-        foreach ($data as $key => $value) {
-            Setting::set($key, $value);
+        foreach ($request->except(['_token', '_method']) as $key => $value) {
+            if (is_string($value)) {
+                Setting::set($key, $value);
+            }
         }
 
         return redirect()->route('admin.settings')
-            ->with('success', 'Settings updated successfully.');
+            ->with('success', 'Configurações atualizadas com sucesso.');
     }
 }
