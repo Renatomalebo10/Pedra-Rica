@@ -1,0 +1,6 @@
+# MySQL on Render
+
+services:
+  - type: pgsql
+    name: pedrarica-db
+    plan: free
