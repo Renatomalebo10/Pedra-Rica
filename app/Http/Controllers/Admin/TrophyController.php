@@ -101,7 +101,7 @@ class TrophyController extends Controller
     public function destroy(Trophy $trophy)
     {
         if ($trophy->photo) {
-            Storage::disk('public')->delete('trophies/'.$trophy->photo);
+            Storage::disk('public')->delete($trophy->photo);
         }
 
         $trophy->delete();

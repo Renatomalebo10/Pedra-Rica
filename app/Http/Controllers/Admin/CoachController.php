@@ -98,7 +98,7 @@ class CoachController extends Controller
     public function destroy(Coach $coach)
     {
         if ($coach->photo) {
-            Storage::disk('public')->delete('coaches/'.$coach->photo);
+            Storage::disk('public')->delete($coach->photo);
         }
 
         $coach->delete();

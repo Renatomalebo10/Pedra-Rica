@@ -17,9 +17,7 @@ class SocialLinkController extends Controller
 
     public function create()
     {
-        $maxOrder = SocialLink::max('sort_order') ?? 0;
-
-        return view('admin.social-links.form', ['maxOrder' => $maxOrder]);
+        return view('admin.social-links.form');
     }
 
     public function store(Request $request)
@@ -28,10 +26,11 @@ class SocialLinkController extends Controller
             'platform' => ['required', 'string', 'max:255'],
             'url' => ['required', 'url', 'max:255'],
             'is_active' => ['boolean'],
-            'sort_order' => ['required', 'integer', 'min:0'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
+        $validated['sort_order'] = $validated['sort_order'] ?? (SocialLink::max('sort_order') + 1);
 
         SocialLink::create($validated);
 
@@ -41,12 +40,12 @@ class SocialLinkController extends Controller
 
     public function show(SocialLink $socialLink)
     {
-        return view('admin.social-links.show', compact('socialLink'));
+        return view('admin.social-links.show', ['socialLink' => $socialLink]);
     }
 
     public function edit(SocialLink $socialLink)
     {
-        return view('admin.social-links.form', compact('socialLink'));
+        return view('admin.social-links.form', ['link' => $socialLink]);
     }
 
     public function update(Request $request, SocialLink $socialLink)
@@ -55,7 +54,7 @@ class SocialLinkController extends Controller
             'platform' => ['required', 'string', 'max:255'],
             'url' => ['required', 'url', 'max:255'],
             'is_active' => ['boolean'],
-            'sort_order' => ['required', 'integer', 'min:0'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');

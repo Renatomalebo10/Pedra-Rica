@@ -81,16 +81,3 @@ Route::get('storage/{path}', function (string $path) {
         'Cache-Control' => 'public, max-age=86400',
     ]);
 })->where('path', '.*')->name('storage.public');
-
-// Rota temporária para redefinir a senha do admin
-Route::get('/reset-admin-pwd', function () {
-    $user = \App\Models\User::where('email', 'admin@pedrarica.com')->first();
-    
-    if ($user) {
-        $user->password = \Illuminate\Support\Facades\Hash::make('12345678');
-        $user->save();
-        return 'Senha alterada com sucesso para: 12345678';
-    }
-    
-    return 'Usuário admin@pedrarica.com não encontrado no banco.';
-});

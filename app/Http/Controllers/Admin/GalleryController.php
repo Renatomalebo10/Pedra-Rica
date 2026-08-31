@@ -68,7 +68,7 @@ class GalleryController extends Controller
     {
         $categories = GalleryCategory::orderBy('name')->get();
 
-        return view('admin.gallery.form', compact('image', 'categories'));
+        return view('admin.gallery.form', ['item' => $image, 'categories' => $categories]);
     }
 
     public function update(Request $request, Gallery $image)
@@ -98,7 +98,7 @@ class GalleryController extends Controller
     public function destroy(Gallery $image)
     {
         if ($image->image_path) {
-            Storage::disk('public')->delete('gallery/'.$image->image_path);
+            Storage::disk('public')->delete($image->image_path);
         }
 
         $image->delete();

@@ -15,38 +15,49 @@
           class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-6">
         @csrf
 
-        <!-- Club Info -->
+        <!-- Geral -->
         <div>
-            <h2 class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Informações do Clube</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Sobre o Clube</h2>
+            <div class="space-y-6">
                 <div>
-                    <label for="club_name" class="block text-sm font-medium text-gray-700 mb-1.5">Nome do Clube</label>
-                    <input type="text" name="club_name" id="club_name" value="{{ old('club_name', $settings['club_name'] ?? '') }}"
+                    <label for="founder_name" class="block text-sm font-medium text-gray-700 mb-1.5">Nome do Fundador</label>
+                    <input type="text" name="founder_name" id="founder_name" value="{{ old('founder_name', $settings['founder_name'] ?? '') }}"
                            class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('club_name') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
                 <div>
-                    <label for="club_founded" class="block text-sm font-medium text-gray-700 mb-1.5">Ano de Fundação</label>
-                    <input type="number" name="club_founded" id="club_founded" value="{{ old('club_founded', $settings['club_founded'] ?? '') }}"
-                           class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('club_founded') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                    <label for="about_description" class="block text-sm font-medium text-gray-700 mb-1.5">Descrição Sobre</label>
+                    <textarea name="about_description" id="about_description" rows="3"
+                              class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">{{ old('about_description', $settings['about_description'] ?? '') }}</textarea>
                 </div>
-                <div class="md:col-span-2">
-                    <label for="club_address" class="block text-sm font-medium text-gray-700 mb-1.5">Morada</label>
-                    <input type="text" name="club_address" id="club_address" value="{{ old('club_address', $settings['club_address'] ?? '') }}"
-                           class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('club_address') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                <div>
+                    <label for="mission" class="block text-sm font-medium text-gray-700 mb-1.5">Missão</label>
+                    <textarea name="mission" id="mission" rows="3"
+                              class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">{{ old('mission', $settings['mission'] ?? '') }}</textarea>
                 </div>
-                <div class="md:col-span-2">
-                    <label for="club_description" class="block text-sm font-medium text-gray-700 mb-1.5">Descrição do Clube</label>
-                    <textarea name="club_description" id="club_description" rows="3"
-                              class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">{{ old('club_description', $settings['club_description'] ?? '') }}</textarea>
-                    @error('club_description') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                <div>
+                    <label for="vision" class="block text-sm font-medium text-gray-700 mb-1.5">Visão</label>
+                    <textarea name="vision" id="vision" rows="3"
+                              class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">{{ old('vision', $settings['vision'] ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label for="history_summary" class="block text-sm font-medium text-gray-700 mb-1.5">Resumo da História</label>
+                    <textarea name="history_summary" id="history_summary" rows="3"
+                              class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">{{ old('history_summary', $settings['history_summary'] ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label for="founder_quote" class="block text-sm font-medium text-gray-700 mb-1.5">Citação do Fundador</label>
+                    <textarea name="founder_quote" id="founder_quote" rows="2"
+                              class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">{{ old('founder_quote', $settings['founder_quote'] ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label for="founder_bio" class="block text-sm font-medium text-gray-700 mb-1.5">Biografia do Fundador</label>
+                    <textarea name="founder_bio" id="founder_bio" rows="3"
+                              class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">{{ old('founder_bio', $settings['founder_bio'] ?? '') }}</textarea>
                 </div>
             </div>
         </div>
 
-        <!-- Contact -->
+        <!-- Contacto -->
         <div>
             <h2 class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Contacto</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -54,67 +65,34 @@
                     <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-1.5">E-mail</label>
                     <input type="email" name="contact_email" id="contact_email" value="{{ old('contact_email', $settings['contact_email'] ?? '') }}"
                            class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('contact_email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label for="contact_phone" class="block text-sm font-medium text-gray-700 mb-1.5">Telefone</label>
                     <input type="text" name="contact_phone" id="contact_phone" value="{{ old('contact_phone', $settings['contact_phone'] ?? '') }}"
                            class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('contact_phone') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                </div>
+                <div class="md:col-span-2">
+                    <label for="contact_address" class="block text-sm font-medium text-gray-700 mb-1.5">Morada</label>
+                    <input type="text" name="contact_address" id="contact_address" value="{{ old('contact_address', $settings['contact_address'] ?? '') }}"
+                           class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
                 </div>
             </div>
         </div>
 
-        <!-- Social -->
+        <!-- Desenvolvedor / Rodapé -->
         <div>
-            <h2 class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Redes Sociais</h2>
+            <h2 class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Desenvolvedor & Rodapé</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label for="facebook_url" class="block text-sm font-medium text-gray-700 mb-1.5">Facebook URL</label>
-                    <input type="url" name="facebook_url" id="facebook_url" value="{{ old('facebook_url', $settings['facebook_url'] ?? '') }}"
-                           placeholder="https://facebook.com/..."
+                    <label for="developer_name" class="block text-sm font-medium text-gray-700 mb-1.5">Nome do Desenvolvedor</label>
+                    <input type="text" name="developer_name" id="developer_name" value="{{ old('developer_name', $settings['developer_name'] ?? '') }}"
                            class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('facebook_url') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
                 <div>
-                    <label for="instagram_url" class="block text-sm font-medium text-gray-700 mb-1.5">Instagram URL</label>
-                    <input type="url" name="instagram_url" id="instagram_url" value="{{ old('instagram_url', $settings['instagram_url'] ?? '') }}"
-                           placeholder="https://instagram.com/..."
+                    <label for="developer_url" class="block text-sm font-medium text-gray-700 mb-1.5">URL do Desenvolvedor</label>
+                    <input type="url" name="developer_url" id="developer_url" value="{{ old('developer_url', $settings['developer_url'] ?? '') }}"
+                           placeholder="https://..."
                            class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('instagram_url') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                </div>
-                <div>
-                    <label for="youtube_url" class="block text-sm font-medium text-gray-700 mb-1.5">YouTube URL</label>
-                    <input type="url" name="youtube_url" id="youtube_url" value="{{ old('youtube_url', $settings['youtube_url'] ?? '') }}"
-                           placeholder="https://youtube.com/..."
-                           class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('youtube_url') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                </div>
-                <div>
-                    <label for="twitter_url" class="block text-sm font-medium text-gray-700 mb-1.5">Twitter/X URL</label>
-                    <input type="url" name="twitter_url" id="twitter_url" value="{{ old('twitter_url', $settings['twitter_url'] ?? '') }}"
-                           placeholder="https://twitter.com/..."
-                           class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('twitter_url') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer / Meta -->
-        <div>
-            <h2 class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Rodapé & Meta</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="md:col-span-2">
-                    <label for="footer_text" class="block text-sm font-medium text-gray-700 mb-1.5">Texto do Rodapé</label>
-                    <input type="text" name="footer_text" id="footer_text" value="{{ old('footer_text', $settings['footer_text'] ?? '') }}"
-                           class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">
-                    @error('footer_text') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                </div>
-                <div class="md:col-span-2">
-                    <label for="meta_description" class="block text-sm font-medium text-gray-700 mb-1.5">Meta Descrição (SEO)</label>
-                    <textarea name="meta_description" id="meta_description" rows="2"
-                              class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]">{{ old('meta_description', $settings['meta_description'] ?? '') }}</textarea>
-                    @error('meta_description') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
             </div>
         </div>

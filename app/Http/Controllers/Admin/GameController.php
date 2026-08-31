@@ -123,7 +123,7 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         if ($game->opponent_logo) {
-            Storage::disk('public')->delete('logos/'.$game->opponent_logo);
+            Storage::disk('public')->delete($game->opponent_logo);
         }
 
         $game->delete();

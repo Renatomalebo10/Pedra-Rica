@@ -82,7 +82,7 @@ class NewsController extends Controller
 
     public function edit(News $article)
     {
-        return view('admin.news.form', ['news' => $article]);
+        return view('admin.news.form', ['article' => $article]);
     }
 
     public function update(Request $request, News $article)
@@ -124,7 +124,7 @@ class NewsController extends Controller
     public function destroy(News $article)
     {
         if ($article->image) {
-            Storage::disk('public')->delete('news/'.$article->image);
+            Storage::disk('public')->delete($article->image);
         }
 
         $article->delete();
