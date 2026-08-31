@@ -41,7 +41,7 @@ class PageController extends Controller
 
     public function players(): View
     {
-        $players = Player::active()->with('season')->get();
+        $players = Player::active()->with('season')->orderByRaw('number IS NULL')->orderBy('number')->get();
 
         return view('pages.players', compact('players'));
     }
