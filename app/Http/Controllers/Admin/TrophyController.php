@@ -47,7 +47,7 @@ class TrophyController extends Controller
             'year' => ['required', 'integer', 'min:1900', 'max:'.(date('Y') + 1)],
             'season_id' => ['nullable', 'exists:seasons,id'],
             'description' => ['nullable', 'string'],
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
         ]);
 
         if ($request->hasFile('photo')) {
@@ -82,7 +82,7 @@ class TrophyController extends Controller
             'year' => ['required', 'integer', 'min:1900', 'max:'.(date('Y') + 1)],
             'season_id' => ['nullable', 'exists:seasons,id'],
             'description' => ['nullable', 'string'],
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
         ]);
 
         if ($request->hasFile('photo')) {

@@ -36,7 +36,7 @@ class CoachController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
             'role' => ['nullable', 'string', 'max:255'],
             'biography' => ['nullable', 'string'],
             'year_joined' => ['nullable', 'integer', 'min:1900', 'max:'.(date('Y') + 1)],
@@ -71,7 +71,7 @@ class CoachController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
             'role' => ['nullable', 'string', 'max:255'],
             'biography' => ['nullable', 'string'],
             'year_joined' => ['nullable', 'integer', 'min:1900', 'max:'.(date('Y') + 1)],

@@ -43,7 +43,7 @@ class PlayerController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
             'number' => ['nullable', 'integer', 'min:0', 'max:99'],
             'position' => ['nullable', 'string', 'max:255'],
             'biography' => ['nullable', 'string'],
@@ -83,7 +83,7 @@ class PlayerController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
             'number' => ['nullable', 'integer', 'min:0', 'max:99'],
             'position' => ['nullable', 'string', 'max:255'],
             'biography' => ['nullable', 'string'],

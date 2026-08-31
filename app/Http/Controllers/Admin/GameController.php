@@ -54,7 +54,7 @@ class GameController extends Controller
     {
         $validated = $request->validate([
             'opponent' => ['required', 'string', 'max:255'],
-            'opponent_logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
+            'opponent_logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:10240'],
             'match_date' => ['required', 'date'],
             'match_time' => ['nullable', 'string', 'max:5'],
             'location' => ['nullable', 'string', 'max:255'],
@@ -95,7 +95,7 @@ class GameController extends Controller
     {
         $validated = $request->validate([
             'opponent' => ['required', 'string', 'max:255'],
-            'opponent_logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
+            'opponent_logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:10240'],
             'match_date' => ['required', 'date'],
             'match_time' => ['nullable', 'string', 'max:5'],
             'location' => ['nullable', 'string', 'max:255'],

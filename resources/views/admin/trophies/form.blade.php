@@ -79,7 +79,7 @@
                     <div class="flex-1">
                         <input type="file" name="photo" accept="image/*"
                                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1e40af] hover:file:bg-blue-100">
-                        <p class="mt-1 text-xs text-gray-400">JPG, PNG ou WEBP. Max 2MB.</p>
+                        <p class="mt-1 text-xs text-gray-400">JPG, PNG ou WEBP. Max 10MB.</p>
                     </div>
                 </div>
                 @error('photo') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror

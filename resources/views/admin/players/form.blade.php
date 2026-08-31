@@ -42,7 +42,7 @@
                 <input type="file" name="photo" accept="image/*"
                        @change="const file = $event.target.files[0]; if (file) { const reader = new FileReader(); reader.onload = (e) => { preview = e.target.result; }; reader.readAsDataURL(file); }"
                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1e40af] hover:file:bg-blue-100 transition-colors">
-                <p class="mt-1 text-xs text-gray-400">JPG, PNG ou WEBP. Max 2MB.</p>
+                <p class="mt-1 text-xs text-gray-400">JPG, PNG ou WEBP. Max 10MB.</p>
             </div>
         </div>
 
