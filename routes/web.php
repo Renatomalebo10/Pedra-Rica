@@ -65,6 +65,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Serve public storage files
 Route::get('storage/{path}', function (string $path) {
+    if (config('filesystems.default') === 's3') {
+        return redirect()->away(Storage::disk('public')->url($path), 301);
+    }
+
     $fullPath = storage_path('app/public/'.$path);
     if (! file_exists($fullPath)) {
         abort(404);
