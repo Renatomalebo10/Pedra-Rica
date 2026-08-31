@@ -59,7 +59,7 @@ class PlayerController extends Controller
             $validated['photo'] = $this->uploadImage($request->file('photo'), 'players');
         }
 
-        $validated['is_active'] = $request->boolean('is_active');
+        $this->normalizePlayerStats($validated);
 
         Player::create($validated);
 
@@ -102,7 +102,7 @@ class PlayerController extends Controller
             $validated['photo'] = $this->uploadImage($request->file('photo'), 'players');
         }
 
-        $validated['is_active'] = $request->boolean('is_active');
+        $this->normalizePlayerStats($validated);
 
         $player->update($validated);
 
@@ -113,7 +113,7 @@ class PlayerController extends Controller
     public function destroy(Player $player)
     {
         if ($player->photo) {
-            Storage::disk('public')->delete('players/'.$player->photo);
+            Storage::disk('public')->delete($player->photo);
         }
 
         $player->delete();
@@ -128,5 +128,18 @@ class PlayerController extends Controller
         $file->storeAs($directory, $filename, 'public');
 
         return $filename;
+    }
+
+    private function normalizePlayerStats(array &$validated): void
+    {
+        $validated['is_active'] = (bool) ($validated['is_active'] ?? false);
+
+        if (! isset($validated['number']) || $validated['number'] === '') {
+            $validated['number'] = null;
+        }
+
+        foreach (['goals', 'assists', 'yellow_cards', 'red_cards', 'matches_played'] as $field) {
+            $validated[$field] = isset($validated[$field]) && $validated[$field] !== '' ? (int) $validated[$field] : 0;
+        }
     }
 }

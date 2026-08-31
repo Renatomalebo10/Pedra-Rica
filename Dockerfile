@@ -29,4 +29,4 @@ RUN composer dump-autoload --optimize \
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan storage:link && php artisan migrate --force && php artisan optimize:clear && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD ["sh", "-c", "php artisan storage:link && php artisan migrate --force && { if [ -z \"$APP_KEY\" ] || [ \"$APP_KEY\" = \"base64:\" ]; then php artisan key:generate; fi; } && php artisan optimize:clear && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan serve --host=0.0.0.0 --port=$PORT"]
