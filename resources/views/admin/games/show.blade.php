@@ -26,17 +26,27 @@
 
     <!-- Score Card -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        @php $home = $game->is_home ?? true; @endphp
         <div class="flex items-center justify-center space-x-8">
+            {{-- Left team --}}
             <div class="text-center">
-                <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-16 h-16 rounded-full object-cover mx-auto mb-2">
-                <p class="text-sm font-semibold text-gray-900">Pedra Rica</p>
+                @if($home)
+                    <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-16 h-16 rounded-full object-cover mx-auto mb-2">
+                @elseif($game->opponent_logo)
+                    <img src="{{ asset('storage/' . $game->opponent_logo) }}" class="w-16 h-16 rounded-full object-cover mx-auto mb-2" alt="{{ $game->opponent }}">
+                @else
+                    <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mx-auto mb-2">
+                        <i data-lucide="shield" class="w-8 h-8 text-gray-400"></i>
+                    </div>
+                @endif
+                <p class="text-sm font-semibold text-gray-900">{{ $home ? 'Pedra Rica' : $game->opponent }}</p>
             </div>
 
             <div class="text-center px-6">
                 <div class="flex items-center space-x-3">
-                    <span class="text-4xl font-bold text-gray-900">{{ $game->our_score ?? '—' }}</span>
+                    <span class="text-4xl font-bold text-gray-900">{{ $home ? ($game->our_score ?? '—') : ($game->opponent_score ?? '—') }}</span>
                     <span class="text-2xl text-gray-400">-</span>
-                    <span class="text-4xl font-bold text-gray-900">{{ $game->opponent_score ?? '—' }}</span>
+                    <span class="text-4xl font-bold text-gray-900">{{ $home ? ($game->opponent_score ?? '—') : ($game->our_score ?? '—') }}</span>
                 </div>
                 @php
                     $statusLabels = ['upcoming' => 'Próximo', 'played' => 'Terminado', 'cancelled' => 'Cancelado'];
@@ -47,15 +57,20 @@
                 </span>
             </div>
 
+            {{-- Right team --}}
             <div class="text-center">
-                @if($game->opponent_logo)
-                    <img src="{{ asset('storage/' . $game->opponent_logo) }}" class="w-16 h-16 rounded-full object-cover mx-auto mb-2" alt="{{ $game->opponent }}">
+                @if($home)
+                    @if($game->opponent_logo)
+                        <img src="{{ asset('storage/' . $game->opponent_logo) }}" class="w-16 h-16 rounded-full object-cover mx-auto mb-2" alt="{{ $game->opponent }}">
+                    @else
+                        <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mx-auto mb-2">
+                            <i data-lucide="shield" class="w-8 h-8 text-gray-400"></i>
+                        </div>
+                    @endif
                 @else
-                    <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mx-auto mb-2">
-                        <i data-lucide="shield" class="w-8 h-8 text-gray-400"></i>
-                    </div>
+                    <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-16 h-16 rounded-full object-cover mx-auto mb-2">
                 @endif
-                <p class="text-sm font-semibold text-gray-900">{{ $game->opponent }}</p>
+                <p class="text-sm font-semibold text-gray-900">{{ $home ? $game->opponent : 'Pedra Rica' }}</p>
             </div>
         </div>
     </div>
@@ -74,7 +89,7 @@
             </div>
             <div>
                 <p class="text-sm font-medium text-gray-700">Hora</p>
-                <p class="text-sm text-gray-900 mt-1">{{ $game->match_time ?? '—' }}</p>
+                <p class="text-sm text-gray-900 mt-1">{{ $game->match_time ? substr($game->match_time, 0, 5) : '—' }}</p>
             </div>
             <div>
                 <p class="text-sm font-medium text-gray-700">Local</p>

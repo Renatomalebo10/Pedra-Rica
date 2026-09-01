@@ -58,7 +58,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="text-sm text-gray-600">{{ $game->match_date ? $game->match_date->format('d/m/Y') : '-' }}</span>
                                 @if($game->match_time)
-                                    <span class="text-xs text-gray-400 block">{{ $game->match_time }}</span>
+                                    <span class="text-xs text-gray-400 block">{{ substr($game->match_time, 0, 5) }}</span>
                                 @endif
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">

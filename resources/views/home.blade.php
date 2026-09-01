@@ -85,22 +85,33 @@
                         <span class="bg-green-400/20 text-green-300 text-xs font-bold px-3 py-1 rounded-full uppercase">Próximo</span>
                     </div>
                     <div class="flex items-center justify-between mb-6">
+                        @php $home = $match->is_home ?? true; @endphp
                         <div class="text-center">
                             <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-12 h-12 rounded-lg object-cover">
-                            </div>
-                            <span class="text-sm font-semibold">Pedra Rica</span>
-                        </div>
-                        <span class="text-lg font-bold text-blue-200">VS</span>
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                @if($match->opponent_logo)
+                                @if($home)
+                                    <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-12 h-12 rounded-lg object-cover">
+                                @elseif($match->opponent_logo)
                                     <img src="{{ asset('storage/' . $match->opponent_logo) }}" alt="{{ $match->opponent }}" class="w-12 h-12 rounded-lg object-contain">
                                 @else
                                     <span class="text-lg font-bold">{{ strtoupper(substr($match->opponent, 0, 2)) }}</span>
                                 @endif
                             </div>
-                            <span class="text-sm font-semibold">{{ $match->opponent }}</span>
+                            <span class="text-sm font-semibold">{{ $home ? 'Pedra Rica' : $match->opponent }}</span>
+                        </div>
+                        <span class="text-lg font-bold text-blue-200">VS</span>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
+                                @if($home)
+                                    @if($match->opponent_logo)
+                                        <img src="{{ asset('storage/' . $match->opponent_logo) }}" alt="{{ $match->opponent }}" class="w-12 h-12 rounded-lg object-contain">
+                                    @else
+                                        <span class="text-lg font-bold">{{ strtoupper(substr($match->opponent, 0, 2)) }}</span>
+                                    @endif
+                                @else
+                                    <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-12 h-12 rounded-lg object-cover">
+                                @endif
+                            </div>
+                            <span class="text-sm font-semibold">{{ $home ? $match->opponent : 'Pedra Rica' }}</span>
                         </div>
                     </div>
                     <div class="flex items-center justify-center gap-6 text-sm text-blue-100">
@@ -111,7 +122,7 @@
                         @if($match->match_time)
                         <div class="flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            <span>{{ $match->match_time }}</span>
+                            <span>{{ substr($match->match_time, 0, 5) }}</span>
                         </div>
                         @endif
                         @if($match->location)

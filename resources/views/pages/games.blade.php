@@ -39,23 +39,38 @@
                                     <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">{{ $game->is_home ? '🏠 Em Casa' : '✈️ Fora' }}</span>
                                 </div>
                             @endif
+                            @php $home = $game->is_home ?? true; @endphp
                             <div class="flex items-center justify-between mb-6">
+                                {{-- Home team: Pedra Rica quando joga em casa, senão o adversário --}}
                                 <div class="text-center flex-1">
                                     <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                        <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-10 h-10 rounded-lg object-cover">
-                                    </div>
-                                    <span class="text-sm font-semibold">Pedra Rica</span>
-                                </div>
-                                <span class="text-lg font-bold text-blue-200 mx-3">VS</span>
-                                <div class="text-center flex-1">
-                                    <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                        @if($game->opponent_logo)
+                                        @if($home)
+                                            <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-10 h-10 rounded-lg object-cover">
+                                        @elseif($game->opponent_logo)
                                             <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-10 h-10 rounded-lg object-contain">
                                         @else
                                             <span class="text-sm font-bold">{{ strtoupper(substr($game->opponent, 0, 2)) }}</span>
                                         @endif
                                     </div>
-                                    <span class="text-sm font-semibold">{{ $game->opponent }}</span>
+                                    <span class="text-sm font-semibold">{{ $home ? 'Pedra Rica' : $game->opponent }}</span>
+                                </div>
+
+                                <span class="text-lg font-bold text-blue-200 mx-3">VS</span>
+
+                                {{-- Away team --}}
+                                <div class="text-center flex-1">
+                                    <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
+                                        @if($home)
+                                            @if($game->opponent_logo)
+                                                <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-10 h-10 rounded-lg object-contain">
+                                            @else
+                                                <span class="text-sm font-bold">{{ strtoupper(substr($game->opponent, 0, 2)) }}</span>
+                                            @endif
+                                        @else
+                                            <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-10 h-10 rounded-lg object-cover">
+                                        @endif
+                                    </div>
+                                    <span class="text-sm font-semibold">{{ $home ? $game->opponent : 'Pedra Rica' }}</span>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center gap-4 text-sm text-blue-100 border-t border-white/20 pt-4">
@@ -66,7 +81,7 @@
                                 @if($game->match_time)
                                     <div class="flex items-center gap-1.5">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        <span>{{ $game->match_time }}</span>
+                                        <span>{{ substr($game->match_time, 0, 5) }}</span>
                                     </div>
                                 @endif
                                 @if($game->location)
@@ -109,15 +124,23 @@
                                     <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">{{ $game->is_home ? '🏠 Em Casa' : '✈️ Fora' }}</span>
                                 </div>
                             @endif
+                            @php $home = $game->is_home ?? true; @endphp
                             <div class="flex items-center justify-between">
+                                {{-- Left team: Pedra Rica quando joga em casa, senão o adversário --}}
                                 <div class="text-center flex-1">
                                     <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                        <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-10 h-10 rounded-lg object-cover">
+                                        @if($home)
+                                            <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-10 h-10 rounded-lg object-cover">
+                                        @elseif($game->opponent_logo)
+                                            <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-10 h-10 rounded-lg object-contain">
+                                        @else
+                                            <span class="text-sm font-bold text-gray-500">{{ strtoupper(substr($game->opponent, 0, 2)) }}</span>
+                                        @endif
                                     </div>
-                                    <span class="text-sm font-semibold text-gray-700">Pedra Rica</span>
+                                    <span class="text-sm font-semibold text-gray-700">{{ $home ? 'Pedra Rica' : $game->opponent }}</span>
                                 </div>
                                 <div class="text-center mx-4">
-                                    <div class="text-2xl font-extrabold text-gray-900">{{ $game->our_score }} <span class="text-gray-400">x</span> {{ $game->opponent_score }}</div>
+                                    <div class="text-2xl font-extrabold text-gray-900">{{ $home ? $game->our_score : $game->opponent_score }} <span class="text-gray-400">x</span> {{ $home ? $game->opponent_score : $game->our_score }}</div>
                                     <span class="text-xs font-semibold
                                         {{ $game->our_score > $game->opponent_score ? 'text-green-600' : ($game->our_score < $game->opponent_score ? 'text-red-500' : 'text-gray-400') }}">
                                         {{ $game->our_score > $game->opponent_score ? 'Vitória' : ($game->our_score < $game->opponent_score ? 'Derrota' : 'Empate') }}
@@ -125,13 +148,17 @@
                                 </div>
                                 <div class="text-center flex-1">
                                     <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                        @if($game->opponent_logo)
-                                            <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-10 h-10 rounded-lg object-contain">
+                                        @if($home)
+                                            @if($game->opponent_logo)
+                                                <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-10 h-10 rounded-lg object-contain">
+                                            @else
+                                                <span class="text-sm font-bold text-gray-500">{{ strtoupper(substr($game->opponent, 0, 2)) }}</span>
+                                            @endif
                                         @else
-                                            <span class="text-sm font-bold text-gray-500">{{ strtoupper(substr($game->opponent, 0, 2)) }}</span>
+                                            <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-10 h-10 rounded-lg object-cover">
                                         @endif
                                     </div>
-                                    <span class="text-sm font-semibold text-gray-700">{{ $game->opponent }}</span>
+                                    <span class="text-sm font-semibold text-gray-700">{{ $home ? $game->opponent : 'Pedra Rica' }}</span>
                                 </div>
                             </div>
                             @if($game->location)
