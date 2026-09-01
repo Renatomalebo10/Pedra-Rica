@@ -49,6 +49,33 @@
                 @error('opponent_logo') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
             </div>
 
+            <!-- Is Home / Away -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Jogo em Casa ou Fora? *</label>
+                <div class="flex gap-4">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="is_home" value="1" {{ old('is_home', $game->is_home ?? '1') == '1' ? 'checked' : '' }}
+                               class="w-4 h-4 text-[#1e40af] border-gray-300 focus:ring-[#1e40af]">
+                        <span class="text-sm text-gray-700">Em Casa</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="is_home" value="0" {{ old('is_home', $game->is_home ?? '1') == '0' ? 'checked' : '' }}
+                               class="w-4 h-4 text-[#1e40af] border-gray-300 focus:ring-[#1e40af]">
+                        <span class="text-sm text-gray-700">Fora</span>
+                    </label>
+                </div>
+                @error('is_home') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+            </div>
+
+            <!-- Club Logo Preview -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Logo do Clube (Pedra Rica)</label>
+                <div class="flex items-center gap-3">
+                    <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-12 h-12 rounded-lg object-cover border border-gray-200">
+                    <span class="text-sm text-gray-500">Logo automático do clube</span>
+                </div>
+            </div>
+
             <!-- Match Date -->
             <div>
                 <label for="match_date" class="block text-sm font-medium text-gray-700 mb-1.5">Data do Jogo *</label>

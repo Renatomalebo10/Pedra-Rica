@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Fillable([
     'opponent',
     'opponent_logo',
+    'is_home',
     'match_date',
     'match_time',
     'location',
@@ -32,6 +33,7 @@ class Game extends Model
         return [
             'match_date' => 'date',
             'match_time' => 'string',
+            'is_home' => 'boolean',
             'our_score' => 'integer',
             'opponent_score' => 'integer',
         ];

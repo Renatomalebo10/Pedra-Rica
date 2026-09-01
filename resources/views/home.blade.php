@@ -87,7 +87,7 @@
                     <div class="flex items-center justify-between mb-6">
                         <div class="text-center">
                             <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                <span class="text-2xl font-extrabold">PR</span>
+                                <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-12 h-12 rounded-lg object-cover">
                             </div>
                             <span class="text-sm font-semibold">Pedra Rica</span>
                         </div>
@@ -95,7 +95,7 @@
                         <div class="text-center">
                             <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
                                 @if($match->opponent_logo)
-                                    <img src="{{ asset('storage/' . $match->opponent_logo) }}" alt="{{ $match->opponent }}" class="w-10 h-10 object-contain">
+                                    <img src="{{ asset('storage/' . $match->opponent_logo) }}" alt="{{ $match->opponent }}" class="w-12 h-12 rounded-lg object-contain">
                                 @else
                                     <span class="text-lg font-bold">{{ strtoupper(substr($match->opponent, 0, 2)) }}</span>
                                 @endif

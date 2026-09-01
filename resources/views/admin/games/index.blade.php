@@ -66,7 +66,10 @@
                                     @if($game->opponent_logo)
                                         <img src="{{ asset('storage/' . $game->opponent_logo) }}" class="w-8 h-8 rounded-full mr-3 object-cover" alt="">
                                     @endif
-                                    <span class="text-sm font-medium text-gray-900">{{ $game->opponent }}</span>
+                                    <div>
+                                        <span class="text-sm font-medium text-gray-900">{{ $game->opponent }}</span>
+                                        <span class="text-xs text-gray-400 block">{{ $game->is_home ? '🏠 Casa' : '✈️ Fora' }}</span>
+                                    </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">

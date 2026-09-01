@@ -28,9 +28,7 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div class="flex items-center justify-center space-x-8">
             <div class="text-center">
-                <div class="w-16 h-16 rounded-full bg-[#1e40af] flex items-center justify-center mx-auto mb-2">
-                    <span class="text-white font-bold text-lg">PR</span>
-                </div>
+                <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-16 h-16 rounded-full object-cover mx-auto mb-2">
                 <p class="text-sm font-semibold text-gray-900">Pedra Rica</p>
             </div>
 
@@ -81,6 +79,10 @@
             <div>
                 <p class="text-sm font-medium text-gray-700">Local</p>
                 <p class="text-sm text-gray-900 mt-1">{{ $game->location ?? '—' }}</p>
+            </div>
+            <div>
+                <p class="text-sm font-medium text-gray-700">Casa / Fora</p>
+                <p class="text-sm text-gray-900 mt-1">{{ $game->is_home ? '🏠 Em Casa' : '✈️ Fora' }}</p>
             </div>
             <div>
                 <p class="text-sm font-medium text-gray-700">Competição</p>

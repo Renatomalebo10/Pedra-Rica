@@ -34,10 +34,15 @@
                                 <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">{{ $game->competition?->name ?? 'Amistoso' }}</span>
                                 <span class="bg-green-400/20 text-green-300 text-xs font-bold px-3 py-1 rounded-full uppercase">Próximo</span>
                             </div>
+                            @if(isset($game->is_home))
+                                <div class="text-center mb-3">
+                                    <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">{{ $game->is_home ? '🏠 Em Casa' : '✈️ Fora' }}</span>
+                                </div>
+                            @endif
                             <div class="flex items-center justify-between mb-6">
                                 <div class="text-center flex-1">
                                     <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                        <span class="text-lg font-extrabold">PR</span>
+                                        <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-10 h-10 rounded-lg object-cover">
                                     </div>
                                     <span class="text-sm font-semibold">Pedra Rica</span>
                                 </div>
@@ -45,7 +50,7 @@
                                 <div class="text-center flex-1">
                                     <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-2 mx-auto">
                                         @if($game->opponent_logo)
-                                            <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-8 h-8 object-contain">
+                                            <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-10 h-10 rounded-lg object-contain">
                                         @else
                                             <span class="text-sm font-bold">{{ strtoupper(substr($game->opponent, 0, 2)) }}</span>
                                         @endif
@@ -99,10 +104,15 @@
                                 <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">{{ $game->competition?->name ?? 'Amistoso' }}</span>
                                 <time class="text-xs text-gray-400">{{ $game->match_date->format('d/m/Y') }}</time>
                             </div>
+                            @if(isset($game->is_home))
+                                <div class="text-center mb-3">
+                                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">{{ $game->is_home ? '🏠 Em Casa' : '✈️ Fora' }}</span>
+                                </div>
+                            @endif
                             <div class="flex items-center justify-between">
                                 <div class="text-center flex-1">
                                     <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-2 mx-auto">
-                                        <span class="text-lg font-extrabold text-[#1e40af]">PR</span>
+                                        <img src="{{ asset('images/pedra-rica-logo.jpeg') }}" alt="Pedra Rica" class="w-10 h-10 rounded-lg object-cover">
                                     </div>
                                     <span class="text-sm font-semibold text-gray-700">Pedra Rica</span>
                                 </div>
@@ -116,7 +126,7 @@
                                 <div class="text-center flex-1">
                                     <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center mb-2 mx-auto">
                                         @if($game->opponent_logo)
-                                            <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-8 h-8 object-contain">
+                                            <img src="{{ asset('storage/' . $game->opponent_logo) }}" alt="{{ $game->opponent }}" class="w-10 h-10 rounded-lg object-contain">
                                         @else
                                             <span class="text-sm font-bold text-gray-500">{{ strtoupper(substr($game->opponent, 0, 2)) }}</span>
                                         @endif
