@@ -14,13 +14,8 @@ services:
     healthCheckPath: /up
     preDeployCommand: >
       sh -c "
-      php artisan migrate --force &&
-      { if [ -z \"$APP_KEY\" ] || [ \"$APP_KEY\" = \"base64:\" ]; then php artisan key:generate; fi; } &&
-      { VALUE=\$(php artisan tinker --execute 'echo \\App\\Models\\User::where(\"email\",\"admin@pedrarica.com\")->exists() ? \"1\":\"0\";'); if [ \"\$VALUE\" != \"1\" ]; then php artisan db:seed --force; fi; } &&
-      php artisan optimize:clear &&
-      php artisan config:cache &&
-      php artisan route:cache &&
-      php artisan view:cache"
+      { if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "base64:" ]; then php artisan key:generate --force; fi; } &&
+      php artisan app:initialize"
     envVars:
       - key: APP_ENV
         value: production
