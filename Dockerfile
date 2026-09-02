@@ -21,7 +21,6 @@ COPY . .
 
 RUN composer dump-autoload --optimize \
     && npm ci && npm run build \
-    && chmod +x railway/*.sh \
     && mkdir -p storage/framework/{cache,sessions,views} \
     && mkdir -p storage/app/public \
     && mkdir -p bootstrap/cache \
@@ -29,4 +28,6 @@ RUN composer dump-autoload --optimize \
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan storage:link && php artisan migrate --force && { if [ -z \"$APP_KEY\" ] || [ \"$APP_KEY\" = \"base64:\" ]; then php artisan key:generate; fi; } && { VALUE=$(php artisan tinker --execute 'echo \\App\\Models\\User::where(\"email\", \"admin@pedrarica.com\")->exists() ? \"1\" : \"0\";'); if [ \"$VALUE\" != \"1\" ]; then php artisan db:seed --force; fi; } && php artisan optimize:clear && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan serve --host=0.0.0.0 --port=$PORT"]
+# Migrate/seed e caches rodam via preDeployCommand (render.yaml) durante o deploy,
+# separados do start do servidor para nao travar o health check (/up).
+CMD ["sh", "-c", "php artisan storage:link && { if [ -z \"$APP_KEY\" ] || [ \"$APP_KEY\" = \"base64:\" ]; then php artisan key:generate; fi; } && php artisan serve --host=0.0.0.0 --port=$PORT"]
