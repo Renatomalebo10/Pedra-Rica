@@ -4,9 +4,13 @@ services:
   - type: web
     name: pedra-rica
     runtime: docker
+    repo: https://github.com/Renatomalebo10/Pedra-Rica
+    branch: main
+    dockerContext: .
     dockerfilePath: ./Dockerfile
     plan: free
-    autoDeploy: true
+    numInstances: 1
+    autoDeployTrigger: 'commit'
     healthCheckPath: /up
     envVars:
       - key: APP_ENV

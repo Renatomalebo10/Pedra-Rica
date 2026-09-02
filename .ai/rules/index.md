@@ -8,3 +8,4 @@ Before planning or editing, find the row whose globs match the file's path and r
 | bootstrap/cache/** | .ai/rules/cache.md |
 | config/filesystems.php | .ai/rules/config.md |
 | Dockerfile | .ai/rules/dockerfile.md |
+| render.yaml | .ai/rules/general.md |
