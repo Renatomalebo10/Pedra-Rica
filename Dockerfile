@@ -28,6 +28,6 @@ RUN composer dump-autoload --optimize \
 
 EXPOSE 8000
 
-# Migrate/seed e caches rodam via preDeployCommand (render.yaml) durante o deploy,
-# separados do start do servidor para nao travar o health check (/up).
-CMD ["sh", "-c", "php artisan storage:link && { if [ -z \"$APP_KEY\" ] || [ \"$APP_KEY\" = \"base64:\" ]; then php artisan key:generate; fi; } && php artisan serve --host=0.0.0.0 --port=$PORT"]
+# Migrate/seed/caches rodam no boot e NUNCA travam o start: se o banco
+# estiver indisponivel, o servidor sobe mesmo assim (evita deploy 500).
+CMD ["sh", "-c", "php artisan storage:link >/dev/null 2>&1; { if [ -z \"$APP_KEY\" ] || [ \"$APP_KEY\" = \"base64:\" ]; then php artisan key:generate --force; fi; }; php artisan app:initialize || echo 'AVISO: inicializacao falhou, subindo servidor mesmo assim'; php artisan serve --host=0.0.0.0 --port=$PORT"]

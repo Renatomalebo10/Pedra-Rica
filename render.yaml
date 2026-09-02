@@ -12,10 +12,6 @@ services:
     numInstances: 1
     autoDeployTrigger: 'commit'
     healthCheckPath: /up
-    preDeployCommand: >
-      sh -c "
-      { if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "base64:" ]; then php artisan key:generate --force; fi; } &&
-      php artisan app:initialize"
     envVars:
       - key: APP_ENV
         value: production
